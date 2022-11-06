@@ -2,6 +2,7 @@ mod logo;
 
 fn main() {
     use terminal_menu::{button, label, menu, mut_menu, run};
+    use rand::Rng;
 
     logo::print_logo();
 
@@ -40,7 +41,7 @@ fn main() {
         println!("Cities: {:?}", cities);
     }
 
-    let random_index = rand::random::<u8>();
+    let random_index = rand::thread_rng().gen_range(0..3);
 
     println!("Random index: {}", random_index);
 }
