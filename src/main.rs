@@ -1,30 +1,19 @@
-use std::io;
-use terminal_menu::{list, menu, mut_menu, run};
-
 fn main() {
-    ask_for_random_type();
-}
-
-fn ask_for_random_type() {
-    let menu = menu(vec![list(
-        "Please choose one of the following",
-        vec!["Cats", "Dogs", "Guapas"],
-    )]);
-
+    use terminal_menu::{button, label, menu, mut_menu, run};
+    let menu = menu(vec![
+        label("----------------------"),
+        label("Please select a random option"),
+        label("this will generate a more random answer for you"),
+        label("-----------------------"),
+        button("Colors"),
+        button("Animals"),
+        button("Cities"),
+    ]);
     run(&menu);
 
-    println!(
-        "My Lists Value: {}",
-        mut_menu(&menu).selection_value("My Lists Name")
-    );
+    // you can get the selected buttons name like so:
+    let binding = mut_menu(&menu);
+    let option = binding.selected_item_name();
 
-    println!("How many do you want to generate?");
-
-    let mut generate_option = String::new();
-
-    io::stdin()
-        .read_line(&mut generate_option)
-        .expect("Failed to read line");
-
-    println!("You generated: {generate_option}");
+    println!("Selected: {}", option);
 }
