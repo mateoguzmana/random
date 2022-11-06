@@ -1,8 +1,8 @@
 mod logo;
 
 fn main() {
-    use terminal_menu::{button, label, menu, mut_menu, run};
     use rand::Rng;
+    use terminal_menu::{button, label, menu, mut_menu, run};
 
     logo::print_logo();
 
@@ -23,25 +23,23 @@ fn main() {
 
     println!("Selected: {}", option);
 
+    let random_index = rand::thread_rng().gen_range(0..2);
+
     if option == "Colors" {
         let colors = ["Green", "Yellow", "Red"];
 
-        println!("Colors: {:?}", colors);
+        println!("Random color: {}", colors[random_index]);
     }
 
     if option == "Animals" {
         let animals = ["Cat", "Dog", "Bird"];
 
-        println!("Animals: {:?}", animals);
+        println!("Random animal: {}", animals[random_index]);
     }
 
     if option == "Cities" {
         let cities = ["Medellín", "Amsterdam", "Athens"];
 
-        println!("Cities: {:?}", cities);
+        println!("Random city: {}", cities[random_index]);
     }
-
-    let random_index = rand::thread_rng().gen_range(0..3);
-
-    println!("Random index: {}", random_index);
 }
